@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spice Garden Restaurant</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0b0b0b;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --green: #7CFC00;
+            --dark: #111111;
+            --light: #dcdcdc;
+            --card: #181818;
+        }
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 50px;
+            font-family: 'Playfair Display', serif;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            width: 60%;
+            height: 3px;
+            background: var(--green);
+            position: absolute;
+            bottom: -12px;
+            left: 20%;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        nav h1 {
+            font-size: 34px;
+            font-family: 'Playfair Display', serif;
+            color: white;
+        }
+
+        nav h1 span {
+            color: var(--green);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: var(--green);
+        }
+
+        /* HERO */
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-content h3 {
+            color: var(--green);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 75px;
+            line-height: 1.1;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+        }
+
+        .hero-content p {
+            color: #d0d0d0;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons a {
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            margin-right: 15px;
+            transition: 0.4s;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: black;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(124, 252, 0, 0.3);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--green);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--green);
+            color: black;
+        }
+
+        /* ABOUT */
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-content p {
+            color: #cfcfcf;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        /* MENU */
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-content {
+            padding: 25px;
+        }
+
+        .menu-content h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .menu-content p {
+            color: #c7c7c7;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .price {
+            margin-top: 15px;
+            color: var(--green);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* GALLERY */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: 0.4s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* BOOKING */
+
+        .booking-container {
+            max-width: 800px;
+            margin: auto;
+            background: var(--card);
+            padding: 50px;
+            border-radius: 25px;
+        }
+
+        .booking-container input,
+        .booking-container textarea {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 12px;
+            background: #101010;
+            color: white;
+            outline: none;
+        }
+
+        .booking-container input:focus,
+        .booking-container textarea:focus {
+            border: 1px solid var(--green);
+        }
+
+        .booking-container button {
+            width: 100%;
+            padding: 16px;
+            background: var(--green);
+            color: black;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .booking-container button:hover {
+            transform: translateY(-5px);
+        }
+
+        /* TESTIMONIALS */
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            padding: 35px;
+            border-radius: 20px;
+        }
+
+        .testimonial-card i {
+            color: var(--green);
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card p {
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .testimonial-card h4 {
+            margin-top: 20px;
+            color: var(--green);
+        }
+
+        /* CONTACT */
+
+        .contact-wrapper {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 25px;
+            font-size: 35px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            color: #d0d0d0;
+        }
+
+        .contact-map {
+            flex: 1;
+        }
+
+        iframe {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #050505;
+            padding: 70px 8% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-box h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-box h3 span {
+            color: var(--green);
+        }
+
+        .footer-box p,
+        .footer-box a {
+            color: #bdbdbd;
+            text-decoration: none;
+            line-height: 2;
+            display: block;
+        }
+
+        .footer-box a:hover {
+            color: var(--green);
+        }
+
+        .social-icons i {
+            font-size: 22px;
+            margin-right: 15px;
+            color: var(--green);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icons i:hover {
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:900px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 50px;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <h1>Spice<span>Garden</span></h1>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#booking">Reserve</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h3>PREMIUM DINING EXPERIENCE</h3>
+
+            <h1>
+                Taste Crafted <br>
+                With Passion
+            </h1>
+
+            <p>
+                Experience authentic South Indian and multi-cuisine
+                flavours in a luxurious ambience designed
+                for unforgettable dining moments.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">View Menu</a>
+                <a href="#booking" class="btn-secondary">Book Table</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop">
+
+            </div>
+
+            <div class="about-content">
+
+                <h2>Our Story</h2>
+
+                <p>
+                    Spice Garden was founded with one simple belief —
+                    great food creates unforgettable memories.
+                    From traditional South Indian dishes to modern
+                    multi-cuisine delights, every meal is prepared
+                    with freshness and passion.
+                </p>
+
+                <p>
+                    Our elegant ambience, premium hospitality,
+                    and carefully crafted menu make us one of
+                    Tuticorin’s favourite dining destinations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MENU -->
+
+    <section id="menu">
+
+        <div class="section-title">
+            <h2>Signature Menu</h2>
+        </div>
+
+        <div class="menu-grid">
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=1974&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h3>South Indian Meals</h3>
+
+                    <p>
+                        Traditional meals served with fresh curries,
+                        rice, and authentic flavours.
+                    </p>
+
+                    <div class="price">₹220</div>
+
+                </div>
+
+            </div>
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?q=80&w=1974&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h3>Chicken Biryani</h3>
+
+                    <p>
+                        Aromatic basmati rice cooked with rich spices
+                        and tender chicken pieces.
+                    </p>
+
+                    <div class="price">₹280</div>
+
+                </div>
+
+            </div>
+
+            <div class="menu-card">
+
+                <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=1974&auto=format&fit=crop">
+
+                <div class="menu-content">
+
+                    <h3>Grilled Specials</h3>
+
+                    <p>
+                        Freshly grilled dishes served with premium
+                        sauces and sides.
+                    </p>
+
+                    <div class="price">₹340</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALLERY -->
+
+    <section id="gallery">
+
+        <div class="section-title">
+            <h2>Food Gallery</h2>
+        </div>
+
+        <div class="gallery-grid">
+
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=2070&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2025&auto=format&fit=crop">
+
+            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop">
+
+        </div>
+
+    </section>
+
+    <!-- BOOKING -->
+
+    <section id="booking">
+
+        <div class="section-title">
+            <h2>Reserve Your Table</h2>
+        </div>
+
+    <form method="post"  >
+        {% csrf_token %} 
+        <div class="booking-container">
+
+            <input type="text" placeholder="Your Name" name="name">
+
+            <input type="tel" placeholder="Phone Number" name="phone">
+
+            <input type="date" name="date">
+
+            <input type="time" name="timing">
+
+            <textarea rows="5" placeholder="Message" name="message"></textarea>
+
+            <button>Book Now</button>
+
+        </div>
+
+    </form>    
+
+    </section>
+
+    <!-- TESTIMONIALS -->
+
+    <section>
+
+        <div class="section-title">
+            <h2>Customer Reviews</h2>
+        </div>
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left"></i>
+
+                <p>
+                    Amazing ambience and one of the best biryanis
+                    we’ve ever tasted in Tuticorin.
+                </p>
+
+                <h4>— Priya R.</h4>
+
+            </div>
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left"></i>
+
+                <p>
+                    Premium dining experience with excellent service
+                    and beautifully presented dishes.
+                </p>
+
+                <h4>— Karthik S.</h4>
+
+            </div>
+
+            <div class="testimonial-card">
+
+                <i class="fas fa-quote-left"></i>
+
+                <p>
+                    Elegant interiors, delicious food,
+                    and very welcoming hospitality.
+                </p>
+
+                <h4>— Meena V.</h4>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+
+        <div class="contact-wrapper">
+
+            <div class="contact-info">
+
+                <h3>Visit Spice Garden</h3>
+
+                <p><strong>Address:</strong> Beach Road, Tuticorin</p>
+
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+
+                <p><strong>Email:</strong> spicegarden@gmail.com</p>
+
+                <p><strong>Open:</strong> 7:00 AM — 10:30 PM</p>
+
+                <div class="social-icons">
+
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-whatsapp"></i>
+
+                </div>
+
+            </div>
+
+            <div class="contact-map">
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.487940663284!2d78.1348!3d8.7642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03ef5c5d5f6f0d%3A0x4d42f5b95c5d7f1d!2sThoothukudi!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div class="footer-box">
+
+                <h3>Spice<span>Garden</span></h3>
+
+                <p>
+                    Where every meal becomes
+                    a celebration.
+                </p>
+
+            </div>
+
+            <div class="footer-box">
+
+                <h3>Quick Links</h3>
+
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#gallery">Gallery</a>
+
+            </div>
+
+            <div class="footer-box">
+
+                <h3>Follow Us</h3>
+
+                <div class="social-icons">
+
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-youtube"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Spice Garden Restaurant | Designed by AJ Technologies
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
